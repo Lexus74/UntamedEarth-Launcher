@@ -13,3 +13,5 @@ The launcher installs under `%LOCALAPPDATA%/Programs/UntamedEarth`, preserves th
 The current binary uses Windows .NET Framework and is not code-signed. Developer builds use `PlayerLauncher/build.ps1`; its executable safety self-test covers path traversal, Windows device names and case-insensitive duplicate destinations. No third-party runtime/model dependency is downloaded by the launcher itself. The packaged game still needs its normal Unreal prerequisites and supported hardware.
 
 The GitHub `launcher.json` address is refreshed by the home service after tunnel changes. The developer PC must stay awake and connected. Launcher executable self-updates are not implemented; download a newer launcher from the official release when required. DLC promotion and donations remain future interface work.
+
+After activation, the invitation field and activation button are hidden for that username on this computer, including future launches. Only the username activation preference is saved; passwords, invitation keys and login tokens are not saved. A different username can still activate its own invitation. Service addresses are handled internally.
