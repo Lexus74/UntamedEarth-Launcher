@@ -1,0 +1,15 @@
+# Untamed Earth player launcher
+
+The small Windows launcher is distributed from the public **Lexus74/UntamedEarth-Launcher** repository. That repository contains only the bootstrap executable, service-address configuration and player documentation. It contains no game files, account data, keys, blacklist or GitHub credential.
+
+First activation: enter the invitation username, the website password (or choose a new password for a manually invited account), and the emailed invitation key; choose **Activate key & install**. Returning users choose **Sign in / check updates**. Keys are username-bound, single-use and redeemable for 14 days. A redeemed key remains linked to its account for the separately defined alpha access period.
+
+The home service checks the current account entitlement, an active redeemed key, account and observed-IP restrictions, and a private GitHub denylist before providing any game-file manifest or bytes. The private list contains HMAC references, not redeemable keys, passwords, clear usernames/emails or IPs. The HMAC secret and GitHub credentials remain on the developer's computer. GitHub repository visibility is checked before using the private list; an unavailable, invalid or stale required check fails closed. A fresh successful policy check can be reused for up to 60 seconds. Local bans are immediate, independent of that cache; changed moderation audit revisions force a new private GitHub synchronization. Active transfers recheck access at least every two seconds between chunks.
+
+Game files are staged as assets of a private release in **Lexus74/UntamedEarth**. Players receive them through authenticated home-service endpoints; they do not receive private GitHub credentials or reusable public download links. Every file has an expected byte count and SHA-256 digest. Unchanged installed files are skipped; updated files are downloaded to a temporary sibling and replaced after verification. Cancellation or failure keeps the previous copy of the affected file. A partly applied update must be completed before playing through the launcher.
+
+The launcher installs under `%LOCALAPPDATA%/Programs/UntamedEarth`, preserves the game's Saved directory, and requires online verification before its Play button starts the game. It does not remove files already downloaded or prevent someone from directly running a copied solo game executable. Stronger multiplayer enforcement is a future server feature.
+
+The current binary uses Windows .NET Framework and is not code-signed. Developer builds use `PlayerLauncher/build.ps1`; its executable safety self-test covers path traversal, Windows device names and case-insensitive duplicate destinations. No third-party runtime/model dependency is downloaded by the launcher itself. The packaged game still needs its normal Unreal prerequisites and supported hardware.
+
+The GitHub `launcher.json` address is refreshed by the home service after tunnel changes. The developer PC must stay awake and connected. Launcher executable self-updates are not implemented; download a newer launcher from the official release when required. DLC promotion and donations remain future interface work.
